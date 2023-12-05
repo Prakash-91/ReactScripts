@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Assignment - Car Table Creation</title>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.4/babel.min.js"></script>
+    <style>
+        
+    </style>
+
+</head>
+
+<body>
+    <div id="root"></div>
+	<script type="text/babel">
+       var CARS = [{make:"BMW",model:"X2",year:"2019"},{make:"Rane Rover",model:"Tiget -X",year:"2022"},{make:"mercedes benz",model:"new highway",year:"2023"}];
+      class Car extends React.Component{
+        constructor(props){
+            super(props);
+            this.state = {cars:CARS};
+        }
+            render(){
+
+                var tableStyle = {
+                        border: "1px solid black",
+                        width: 400
+                 };
+                 var theadStyle = {
+                       height: 50,
+                       textAlign: "center"
+                 };
+                
+                 var tbodyStyle = {
+                       height: 50,
+                       textAlign: "center"
+                 };
+                 var bStyle = {
+                       textAlign: "center"
+                 };
+                
+                return <div> 
+                            <b style={bStyle}>{this.props.title}</b>
+                            <table style={tableStyle}>
+                                <thead style={theadStyle}>
+                                    <tr>
+                                        <td>Make</td>
+                                        <td>Model</td>
+                                        <td>Year</td>
+                                    </tr>
+                                </thead>
+                                <tbody style={tbodyStyle}>
+                                    {this.state.cars.map(car => <tr>
+                                            <td>{car.make}</td>
+                                            <td>{car.model}</td>
+                                            <td>{car.year}</td>
+                                        </tr>)
+                                    }
+                                    
+                                </tbody>
+                            </table>
+                    </div>
+            }
+      }
+
+        ReactDOM.render(<div><Car title="Car Manufacturing Details"/></div>, document.getElementById("root"));
+	</script>
+</body>
+
+</html>

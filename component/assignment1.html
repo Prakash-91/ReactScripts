@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Order - Assignment</title>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.4/babel.min.js"></script>
+    <style>
+        #root {
+            align-content: center;
+        }
+        #root h1{
+            font-size: 50px;
+            color: blue;
+        }
+        
+        #root h3{
+            font-size: 20px;
+        }
+        
+    </style>
+
+</head>
+
+<body>
+    <div id="root"></div>
+	<script type="text/babel">
+       
+        class Order extends React.Component{
+            render(){ 
+                return <div> 
+                <h1>{this.props.title}</h1>
+                <h3> Id: {this.props.id} </h3>
+                <h3> Name: {this.props.name}</h3>
+                <h3> Price: {this.props.price}</h3>
+                <h3>  <ShippingAddress shipaddress={this.props.shipaddress}/> </h3>
+                <h3>  <PaymentDetails payment={this.props.payment}/> </h3>
+                </div>
+            }
+       }
+       class ShippingAddress extends React.Component{
+            render(){ 
+                return <div> Shipping Address <br/>
+                Flat NO : {this.props.shipaddress.flatNo} &nbsp;
+                Apartment : {this.props.shipaddress.apartmentName} &nbsp;
+                Street : {this.props.shipaddress.street} &nbsp;
+                Location : {this.props.shipaddress.location} &nbsp;
+                </div>
+            }
+       }
+
+       var shipaddress1 ={
+         flatNo :"404",
+         apartmentName: "Sobha",
+         street: "101",
+         location: "yelankha"
+       }
+
+       class PaymentDetails extends React.Component{
+            render(){ 
+                return <div> Payment Details <br/>
+                Debit Card : {this.props.payment.debitCard} &nbsp;
+                Credit Card : {this.props.payment.creditCard} &nbsp;
+                Check : {this.props.payment.check} &nbsp;
+                </div>
+            }
+       }
+
+       var payment1 = {
+        debitCard :"09999",
+        creditCard :"08888",
+        check :"66gyt"
+       }
+
+        ReactDOM.render(<div><Order title="Order Details" id="1" name="Iphone" price="100000" shipaddress={shipaddress1} payment={payment1}/></div>, document.getElementById("root"));
+	</script>
+</body>
+
+</html>

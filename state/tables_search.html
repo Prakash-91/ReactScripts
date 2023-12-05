@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tables Search</title>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.4/babel.min.js"></script>
+    <style>
+        #root {
+            align-content: center;
+        }
+        #root b{
+            font-size: 50px;
+            color: blue;
+        }
+        #root thead{
+            font-size: 20px;
+            color: black;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="root"></div>
+	<script type="text/babel">
+
+var STUDENTS = [{name:"Prakash",age:"32",city:"Puri"},
+                {name:"Chandra",age:"31",city:"Brahmagiiri"}, 
+                {name:"Palai",age:"30",city:"Panasapada"},
+                {name:"Sada",age:"32",city:"Gujurat"}]
+
+       // Using Map
+       class StudentList extends React.Component{
+
+        constructor(props){
+            super(props);
+            this.state = {students :STUDENTS, studentsClone:STUDENTS};
+        }
+        handleOnChange(event){
+            //alert(event.target.value);
+            var filterString = event.target.value;
+            var filterStudents = [];
+            for(var student of this.state.students){
+                if(student.name.toLowerCase().indexOf(filterString.toLowerCase()) >= 0 || 
+                student.city.toLowerCase().indexOf(filterString.toLowerCase()) >= 0){
+                    filterStudents.push(student); 
+                }
+            }
+            this.setState({studentsClone:filterStudents});
+        }
+            render(){
+                return <div>
+                    <b>{this.props.title}</b>
+                    <br/>
+                    <input type="text" placeholder="search by name or city" onChange={this.handleOnChange.bind(this)}/>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Name</td>
+                                <td>Age</td>
+                                <td>City</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.state.studentsClone.map(student => <RowCreator item={student}/>)}  
+                        </tbody>
+                    </table>
+                    </div>
+            }
+       }
+        // Instead displaying row inside map method use another component who helps us to create rows for us
+        class RowCreator extends React.Component{
+        render(){
+            var student = this.props.item;
+            return  <tr>
+                        <td>{student.name}</td>
+                        <td>{student.age}</td>
+                        <td>{student.city}</td>
+                    </tr>
+        }
+       }
+        ReactDOM.render(<div><StudentList title="Student Details"/></div>, document.getElementById("root"));
+	</script>
+</body>
+
+</html>

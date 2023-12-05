@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Arrays</title>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.4/babel.min.js"></script>
+    <style>
+        #root {
+            align-content: center;
+        }
+        #root b{
+            font-size: 50px;
+            color: red;
+        }
+        #root ul{
+            font-size: 30px;
+            color: blue;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="root"></div>
+	<script type="text/babel">
+       
+       class ListOfCourses extends React.Component{
+            render(){
+                return <div>
+                    <b>{this.props.title}</b>
+                    <ul>
+                        <li>JavaScript</li>
+                        <li>React JS</li>
+                        <li>Angular JS</li>
+                        <li>Node JS</li>
+                    </ul>
+                    </div>
+            }
+       }
+
+       // using forEach loop
+       class ListOfCourses2 extends React.Component{
+            render(){
+
+                var courses = ['JavaScript','React JS','Angular JS','Node JS'];
+                var liElements = [];
+
+                for(var course of courses){
+                    liElements.push(<li>{course}</li>);
+                }
+                return <div>
+                    <b>{this.props.title}</b>
+                    <ul>{liElements}</ul>
+                    </div>
+            }
+       }
+
+        // using map method of array
+        class ListOfCourses3 extends React.Component{
+            render(){
+                var courses = ['JavaScript','React JS','Angular JS','Node JS'];
+                return <div>
+                    <b>{this.props.title}</b>
+                    <ul>{courses.map(course => <li>{course}</li>)}</ul>
+                    </div>
+            }
+       }
+        ReactDOM.render(<div><ListOfCourses3 title="Login Details"/></div>, document.getElementById("root"));
+	</script>
+</body>
+
+</html>

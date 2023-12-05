@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>First Reaction</title>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.4/babel.min.js"></script>
+    <style>
+        #root {
+            align-content: center;
+            background-color: yellowgreen;
+        }
+        #root h1{
+            font-size: 30px;
+            color: red;
+        }
+        #root b{
+            font-size: 20px;
+            color: black;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="root"></div>
+	<script type="text/babel">
+        class DisplayCustomer extends React.Component{
+            render(){
+                return <div><h1> Customer Details </h1>
+                    <b>Name:{this.props.name}</b> <br/>
+                    <b>Email:{this.props.email}</b> <br/>
+                    <b><DisplayAddress address={this.props.address}/></b>
+                    </div>
+            }
+        }
+        class DisplayAddress extends React.Component{
+            render(){
+                return <div>Address <br/>
+                    Street : {this.props.address.street} , &nbsp;
+                    City : {this.props.address.city}
+                    </div>
+            }
+        }
+        var address1 ={
+            street :"Agaraha Lane",
+            city :"Bangalore"
+        }
+        var address2 ={
+            street :"Nagawara Lane",
+            city :"Bangalore2"
+        }
+        ReactDOM.render(<div><DisplayCustomer name="Prakash" email="abc@gmail.com" address={address1}/>
+            <DisplayCustomer name="Chandra" email="xyz@gmail.com" address={address2}/> </div>, document.getElementById("root"));
+	</script>
+</body>
+
+</html>

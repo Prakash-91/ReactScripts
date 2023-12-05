@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>First Reaction</title>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.4/babel.min.js"></script>
+    <style>
+        #root {
+            align-content: center;
+            background-color: yellowgreen;
+        }
+        #root b{
+            font-size: 50px;
+            color: red;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="root"></div>
+	<script type="text/babel">
+        class Hello extends React.Component{
+            render(){
+                return <b>Hey Prabhu {this.props.name} koti koti Pranam</b>
+            }
+        }
+        ReactDOM.render(<Hello name="Jagannath"/>, document.getElementById("root"));
+	</script>
+</body>
+
+</html>

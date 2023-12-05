@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Assignment - Car Table Creation</title>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.4/babel.min.js"></script>
+    <style>
+        #root {
+            align-content: center;
+        }
+        #root b{
+            font-size: 25px;
+            color: black;
+            font-weight: bold;
+        }
+        #root thead{
+            font-size: 20px;
+            color: black;
+            font-weight: bold;
+        }
+        
+        
+    </style>
+
+</head>
+
+<body>
+    <div id="root"></div>
+	<script type="text/babel">
+          var CARS = [{make:"BMW",model:"X2",year:"2019"}];
+      class Car extends React.Component{
+
+        constructor(props){
+            super(props);
+            this.state= {cars:CARS};
+        }
+        handleOnClick(event){
+            var newCar =  [{make:"HONDA",model:"city",year:"2023"}];
+            var addCar= [];
+            for(var car of this.state.cars){
+                addCar.push(car);
+            }
+            for(var car of newCar){
+                addCar.push(car);
+            }
+            //console.log(addCar);
+            this.setState({cars:addCar});
+            //console.log(this.state.cars);
+        }
+            render(){
+                return <div> 
+                            <b>{this.props.title}</b> <br/>
+                            <input type="button" value="update" onClick={this.handleOnClick.bind(this)}/>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td>Make</td>
+                                        <td>Model</td>
+                                        <td>Year</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {this.state.cars.map(car => <CarRowCreater item={car}/>)} 
+                                </tbody>
+                            </table>
+                    </div>
+            }
+      }
+      class CarRowCreater extends React.Component{
+        render(){
+            var car = this.props.item;
+            return <tr>
+                        <td>{car.make}</td>
+                        <td>{car.model}</td>
+                        <td>{car.year}</td>
+                   </tr>
+                 
+        }
+      }
+        ReactDOM.render(<div><Car title="Car Manufacturing Details"/></div>, document.getElementById("root"));
+	</script>
+</body>
+
+</html>

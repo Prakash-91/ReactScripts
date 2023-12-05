@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tables</title>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.4/babel.min.js"></script>
+    <style>
+        #root {
+            align-content: center;
+        }
+        #root b{
+            font-size: 50px;
+            color: blue;
+        }
+        
+    </style>
+
+</head>
+
+<body>
+    <div id="root"></div>
+	<script type="text/babel">
+       
+       class StudentList extends React.Component{
+            render(){
+                return <div>
+                    <b>{this.props.title}</b>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Name</td>
+                                <td>Age</td>
+                                <td>City</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Prakash</td>
+                                <td>32</td>
+                                <td>Bangalore</td>
+                            </tr>
+                            <tr>
+                                <td>Chandra</td>
+                                <td>31</td>
+                                <td>Chennai</td>
+                            </tr>
+                            <tr>
+                                <td>Palai</td>
+                                <td>30</td>
+                                <td>Bhubaneswar</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+            }
+       }
+       // Using Map
+       class StudentList2 extends React.Component{
+            render(){
+                var students = [{name:"Prakash",age:"32",city:"Puri"},
+                {name:"Chandra",age:"31",city:"Brahmagiiri"}, {name:"Palai",age:"30",city:"Panasapada"}]
+                return <div>
+                    <b>{this.props.title}</b>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Name</td>
+                                <td>Age</td>
+                                <td>City</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {students.map(student =>
+                            <tr>
+                                <td>{student.name}</td>
+                                <td>{student.age}</td>
+                                <td>{student.city}</td>
+                            </tr>
+                            )}
+                            
+                        </tbody>
+                    </table>
+                    </div>
+            }
+       }
+        ReactDOM.render(<div><StudentList2 title="Student Details"/></div>, document.getElementById("root"));
+	</script>
+</body>
+
+</html>
